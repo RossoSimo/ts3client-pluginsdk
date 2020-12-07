@@ -1,5 +1,23 @@
-var peer = new Peer();
+var peer = new Peer(options={
+    host:'https://tsplugin.herokuapp.com/'
+});
 
-peer.on('open', function(id) {
-    console.log('My peer ID is: ' + id);
-  });
+
+function start_stream() {
+    peer.on('open', function(id) {
+        console.log('My peer ID is: ' + id);
+      });
+}
+
+function conn(){
+    let id = document.getElementById("ConnID").value;
+    var conn = peer.connect(id); // Passare id tramite ts
+}
+
+function _send(msg) {
+    conn.send(msg)
+}
+
+function disc() {
+    peer.disconnect();
+}

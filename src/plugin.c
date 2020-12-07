@@ -65,20 +65,20 @@ const char* ts3plugin_name() {
 	/* TeamSpeak expects UTF-8 encoded characters. Following demonstrates a possibility how to convert UTF-16 wchar_t into UTF-8. */
 	static char* result = NULL;  /* Static variable so it's allocated only once */
 	if(!result) {
-		const wchar_t* name = L"Test Plugin";
+		const wchar_t* name = L"Screen-Share";
 		if(wcharToUtf8(name, &result) == -1) {  /* Convert name into UTF-8 encoded result */
-			result = "Test Plugin";  /* Conversion failed, fallback here */
+			result = "Screen-Share";  /* Conversion failed, fallback here */
 		}
 	}
 	return result;
 #else
-	return "Test Plugin";
+	return "Screen-Share";
 #endif
 }
 
 /* Plugin version */
 const char* ts3plugin_version() {
-    return "1.2";
+    return "0.0.1";
 }
 
 /* Plugin API version. Must be the same as the clients API major version, else the plugin fails to load. */
@@ -89,13 +89,13 @@ int ts3plugin_apiVersion() {
 /* Plugin author */
 const char* ts3plugin_author() {
 	/* If you want to use wchar_t, see ts3plugin_name() on how to use */
-    return "TeamSpeak Systems GmbH";
+    return "Doos, Awaska";
 }
 
 /* Plugin description */
 const char* ts3plugin_description() {
 	/* If you want to use wchar_t, see ts3plugin_name() on how to use */
-    return "This plugin demonstrates the TeamSpeak 3 client plugin architecture.";
+    return "can be used to share screen on TeamSpeak 3";
 }
 
 /* Set TeamSpeak 3 callback functions */
@@ -460,7 +460,7 @@ void ts3plugin_currentServerConnectionChanged(uint64 serverConnectionHandlerID) 
 
 /* Static title shown in the left column in the info frame */
 const char* ts3plugin_infoTitle() {
-	return "Test plugin info";
+	return "Screen-Share info";
 }
 
 /*
