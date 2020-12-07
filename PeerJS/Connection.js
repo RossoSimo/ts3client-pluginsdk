@@ -1,7 +1,8 @@
+
+
 var peer = new Peer(options={
     host:'https://tsplugin.herokuapp.com/'
 });
-
 
 function start_stream() {
     peer.on('open', function(id) {
