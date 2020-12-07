@@ -76,11 +76,7 @@
                  */
                 function initialize() {
                     // Create own peer object with connection to shared PeerJS server
-                    peer = new Peer(null, {
-                        host:'tsplugin.herokuapp.com',
-                        debug: 3,
-                        port: 80
-                    });
+                    peer = new Peer(null);
 
                     peer.on('open', function (id) {
                         // Workaround for peer.reconnect deleting previous id
@@ -204,11 +200,6 @@
                     var h = now.getHours();
                     var m = addZero(now.getMinutes());
                     var s = addZero(now.getSeconds());
-
-                    if (h > 12)
-                        h -= 12;
-                    else if (h === 0)
-                        h = 12;
 
                     function addZero(t) {
                         if (t < 10)
