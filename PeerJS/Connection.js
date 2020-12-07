@@ -1,7 +1,21 @@
 
 
-var peer = new Peer(options={
-    host:'https://tsplugin.herokuapp.com/'
+var peer = new Peer(null,{
+    host:'tsplugin.herokuapp.com',
+    debug: 2,
+    port: 80
+});
+let lastPeerId;
+peer.on('open', function (id) {
+    // Workaround for peer.reconnect deleting previous id
+    if (peer.id === null) {
+        console.log('Received null id from peer open');
+        peer.id = lastPeerId;
+    } else {
+        lastPeerId = peer.id;
+    }
+
+    console.log('ID: ' + peer.id);
 });
 
 function start_stream() {
@@ -12,7 +26,7 @@ function start_stream() {
 
 function conn(){
     let id = document.getElementById("ConnID").value;
-    var conn = peer.connect(id); // Passare id tramite ts
+    var conns = peer.connect(id); // Passare id tramite ts
 }
 
 function _send(msg) {
